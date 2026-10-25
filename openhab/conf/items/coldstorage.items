@@ -1,0 +1,33 @@
+    // Chamber 1 temperature already exists in the openHAB UI.
+// Avoid duplicate Item name Chamber1_Temperature.
+
+Number Chamber2_Temperature "Chamber 2 Temperature" { channel="mqtt:topic:coldstorage:chamber2:temperature" }
+String Chamber2_Door "Chamber 2 Door" { channel="mqtt:topic:coldstorage:chamber2:door" }
+String Chamber2_Mains "Chamber 2 Mains" { channel="mqtt:topic:coldstorage:chamber2:mains" }
+String Chamber2_Compressor "Chamber 2 Compressor" { channel="mqtt:topic:coldstorage:chamber2:compressor" }
+String Chamber2_Alarm "Chamber 2 Alarm" { channel="mqtt:topic:coldstorage:chamber2:alarm" }
+Number Chamber2_OutageSeconds "Chamber 2 Outage Seconds" { channel="mqtt:topic:coldstorage:chamber2:outage_seconds" }
+String Chamber2_Status "Chamber 2 Temperature Sensor Status" { channel="mqtt:topic:coldstorage:chamber2:status" }
+
+Number Chamber3_Temperature "Chamber 3 Temperature" { channel="mqtt:topic:coldstorage:chamber3:temperature" }
+String Chamber3_Door "Chamber 3 Door" { channel="mqtt:topic:coldstorage:chamber3:door" }
+String Chamber3_Mains "Chamber 3 Mains" { channel="mqtt:topic:coldstorage:chamber3:mains" }
+String Chamber3_Compressor "Chamber 3 Compressor" { channel="mqtt:topic:coldstorage:chamber3:compressor" }
+String Chamber3_Alarm "Chamber 3 Alarm" { channel="mqtt:topic:coldstorage:chamber3:alarm" }
+Number Chamber3_OutageSeconds "Chamber 3 Outage Seconds" { channel="mqtt:topic:coldstorage:chamber3:outage_seconds" }
+String Chamber3_Status "Chamber 3 Temperature Sensor Status" { channel="mqtt:topic:coldstorage:chamber3:status" }
+
+String Chamber1_Door "Chamber 1 Door" { channel="mqtt:topic:coldstorage:chamber1_extra:door" }
+String Chamber1_Mains "Chamber 1 Mains" { channel="mqtt:topic:coldstorage:chamber1_extra:mains" }
+String Chamber1_Compressor "Chamber 1 Compressor" { channel="mqtt:topic:coldstorage:chamber1_extra:compressor" }
+String Chamber1_Alarm "Chamber 1 Alarm" { channel="mqtt:topic:coldstorage:chamber1_extra:alarm" }
+Number Chamber1_OutageSeconds "Chamber 1 Outage Seconds" { channel="mqtt:topic:coldstorage:chamber1_extra:outage_seconds" }
+String Chamber1_Status "Chamber 1 Temperature Sensor Status" { channel="mqtt:topic:coldstorage:chamber1_extra:status" }
+
+String ColdStorage_LastEvent "Последнее событие"
+String ColdStorage_EventLog "Журнал нарушений"
+String ColdStorage_SystemStatus "Состояние склада"
+
+String Chamber1_Event "Chamber 1 Last Event" { channel="mqtt:topic:coldstorage:chamber1_extra:event" }
+String Chamber2_Event "Chamber 2 Last Event" { channel="mqtt:topic:coldstorage:chamber2:event" }
+String Chamber3_Event "Chamber 3 Last Event" { channel="mqtt:topic:coldstorage:chamber3:event" }

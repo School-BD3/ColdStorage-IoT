@@ -1,0 +1,37 @@
+ // MQTT Broker and Chamber 1 temperature were created through the openHAB UI.
+ // Do not redefine their existing Thing IDs.
+
+Thing mqtt:topic:coldstorage:chamber1_extra "ColdStorage Chamber 1 Sensors" (mqtt:broker:coldstorage) {
+    Channels:
+        Type string : door "Door" [ stateTopic="coldstorage/chamber1/door/telemetry", transformationPattern="JSONPATH:$.value" ]
+        Type string : mains "Mains" [ stateTopic="coldstorage/chamber1/mains/telemetry", transformationPattern="JSONPATH:$.value" ]
+        Type string : compressor "Compressor" [ stateTopic="coldstorage/chamber1/compressor/state", transformationPattern="JSONPATH:$.value" ]
+        Type string : alarm "Alarm" [ stateTopic="coldstorage/chamber1/alarm/state", transformationPattern="JSONPATH:$.value" ]
+        Type number : outage_seconds "Outage Seconds" [ stateTopic="coldstorage/chamber1/mains/telemetry", transformationPattern="JSONPATH:$.outage_seconds" ]
+        Type string : status "Temperature Sensor Status" [ stateTopic="coldstorage/chamber1/temperature/status", transformationPattern="JSONPATH:$.status" ]
+        Type string : event "Last Event" [ stateTopic="coldstorage/chamber1/events/telemetry", transformationPattern="JSONPATH:$.message" ]
+}
+
+Thing mqtt:topic:coldstorage:chamber2 "ColdStorage Chamber 2" (mqtt:broker:coldstorage) {
+    Channels:
+        Type number : temperature "Temperature" [ stateTopic="coldstorage/chamber2/temperature/telemetry", transformationPattern="JSONPATH:$.value" ]
+        Type string : door "Door" [ stateTopic="coldstorage/chamber2/door/telemetry", transformationPattern="JSONPATH:$.value" ]
+        Type string : mains "Mains" [ stateTopic="coldstorage/chamber2/mains/telemetry", transformationPattern="JSONPATH:$.value" ]
+        Type string : compressor "Compressor" [ stateTopic="coldstorage/chamber2/compressor/state", transformationPattern="JSONPATH:$.value" ]
+        Type string : alarm "Alarm" [ stateTopic="coldstorage/chamber2/alarm/state", transformationPattern="JSONPATH:$.value" ]
+        Type number : outage_seconds "Outage Seconds" [ stateTopic="coldstorage/chamber2/mains/telemetry", transformationPattern="JSONPATH:$.outage_seconds" ]
+        Type string : status "Temperature Sensor Status" [ stateTopic="coldstorage/chamber2/temperature/status", transformationPattern="JSONPATH:$.status" ]
+        Type string : event "Last Event" [ stateTopic="coldstorage/chamber2/events/telemetry", transformationPattern="JSONPATH:$.message" ]
+}
+
+Thing mqtt:topic:coldstorage:chamber3 "ColdStorage Chamber 3" (mqtt:broker:coldstorage) {
+    Channels:
+        Type number : temperature "Temperature" [ stateTopic="coldstorage/chamber3/temperature/telemetry", transformationPattern="JSONPATH:$.value" ]
+        Type string : door "Door" [ stateTopic="coldstorage/chamber3/door/telemetry", transformationPattern="JSONPATH:$.value" ]
+        Type string : mains "Mains" [ stateTopic="coldstorage/chamber3/mains/telemetry", transformationPattern="JSONPATH:$.value" ]
+        Type string : compressor "Compressor" [ stateTopic="coldstorage/chamber3/compressor/state", transformationPattern="JSONPATH:$.value" ]
+        Type string : alarm "Alarm" [ stateTopic="coldstorage/chamber3/alarm/state", transformationPattern="JSONPATH:$.value" ]
+        Type number : outage_seconds "Outage Seconds" [ stateTopic="coldstorage/chamber3/mains/telemetry", transformationPattern="JSONPATH:$.outage_seconds" ]
+        Type string : status "Temperature Sensor Status" [ stateTopic="coldstorage/chamber3/temperature/status", transformationPattern="JSONPATH:$.status" ]
+        Type string : event "Last Event" [ stateTopic="coldstorage/chamber3/events/telemetry", transformationPattern="JSONPATH:$.message" ]
+}

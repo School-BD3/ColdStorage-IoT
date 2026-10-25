@@ -1,0 +1,155 @@
+rule "ColdStorage Temperature Monitoring"
+when
+    Item Chamber1_Temperature changed or
+    Item Chamber2_Temperature changed or
+    Item Chamber3_Temperature changed
+then
+    var boolean temperatureAlarm = false
+
+    if (Chamber1_Temperature.state instanceof Number) {
+        val t = (Chamber1_Temperature.state as Number).doubleValue
+        if (t < 2 || t > 8) temperatureAlarm = true
+    }
+
+    if (Chamber2_Temperature.state instanceof Number) {
+        val t = (Chamber2_Temperature.state as Number).doubleValue
+        if (t < 2 || t > 8) temperatureAlarm = true
+    }
+
+    if (Chamber3_Temperature.state instanceof Number) {
+        val t = (Chamber3_Temperature.state as Number).doubleValue
+        if (t < 2 || t > 8) temperatureAlarm = true
+    }
+
+    if (temperatureAlarm) {
+        ColdStorage_SystemStatus.postUpdate("TEMPERATURE WARNING")
+        ColdStorage_LastEvent.postUpdate("Температура вне диапазона 2-8 C")
+        logWarn("coldstorage", "Temperature outside allowed range")
+    } else {
+        if (Chamber1_Mains.state.toString == "true" &&
+            Chamber2_Mains.state.toString == "true" &&
+            Chamber3_Mains.state.toString == "true") {
+            ColdStorage_SystemStatus.postUpdate("NORMAL")
+        }
+    }
+end
+
+rule "ColdStorage Door Monitoring"
+when
+    Item Chamber1_Door changed or
+    Item Chamber2_Door changed or
+    Item Chamber3_Door changed
+then
+    if (Chamber1_Door.state.toString == "true" ||
+        Chamber2_Door.state.toString == "true" ||
+        Chamber3_Door.state.toString == "true") {
+
+        ColdStorage_LastEvent.postUpdate(
+            "Предупреждение: открыта дверь холодильной камеры"
+        )
+
+        logWarn("coldstorage", "Chamber door opened")
+
+    } else {
+        ColdStorage_LastEvent.postUpdate("Все двери холодильных камер закрыты")
+        logInfo("coldstorage", "All chamber doors closed")
+    }
+end
+
+rule "ColdStorage Power Monitoring"
+when
+    Item Chamber1_Mains changed or
+    Item Chamber2_Mains changed or
+    Item Chamber3_Mains changed or
+    Item Chamber1_Mains received command or
+    Item Chamber2_Mains received command or
+    Item Chamber3_Mains received command
+then
+    if (Chamber1_Mains.state.toString == "false" ||
+        Chamber2_Mains.state.toString == "false" ||
+        Chamber3_Mains.state.toString == "false") {
+
+        ColdStorage_SystemStatus.postUpdate("POWER OUTAGE")
+        ColdStorage_LastEvent.postUpdate("Отключение питания! Не открывать двери!")
+
+        logWarn("coldstorage", "Power outage detected. Do not open chamber doors.")
+
+    } else if (Chamber1_Mains.state.toString == "true" &&
+               Chamber2_Mains.state.toString == "true" &&
+               Chamber3_Mains.state.toString == "true") {
+
+        var boolean temperatureAlarm = false
+
+        if (Chamber1_Temperature.state instanceof Number) {
+            val t = (Chamber1_Temperature.state as Number).doubleValue
+            if (t < 2 || t > 8) temperatureAlarm = true
+        }
+
+        if (Chamber2_Temperature.state instanceof Number) {
+            val t = (Chamber2_Temperature.state as Number).doubleValue
+            if (t < 2 || t > 8) temperatureAlarm = true
+        }
+
+        if (Chamber3_Temperature.state instanceof Number) {
+            val t = (Chamber3_Temperature.state as Number).doubleValue
+            if (t < 2 || t > 8) temperatureAlarm = true
+        }
+
+        if (temperatureAlarm) {
+            ColdStorage_SystemStatus.postUpdate("TEMPERATURE WARNING")
+        } else {
+            ColdStorage_SystemStatus.postUpdate("NORMAL")
+        }
+
+        ColdStorage_LastEvent.postUpdate("Электропитание восстановлено")
+        logInfo("coldstorage", "Power supply restored.")
+    }
+end
+
+rule "ColdStorage Chamber 1 Event Journal"
+when
+    Item Chamber1_Event received update
+then
+    val message = Chamber1_Event.state.toString
+
+    if (message != "NULL" && message != "UNDEF" && message != "") {
+        val entry = "Камера 1: " + message
+
+        ColdStorage_LastEvent.postUpdate(entry)
+        ColdStorage_EventLog.postUpdate(entry)
+
+        logInfo("coldstorage.events", entry)
+    }
+end
+
+rule "ColdStorage Chamber 2 Event Journal"
+when
+    Item Chamber2_Event received update
+then
+    val message = Chamber2_Event.state.toString
+
+    if (message != "NULL" && message != "UNDEF" && message != "") {
+        val entry = "Камера 2: " + message
+
+        ColdStorage_LastEvent.postUpdate(entry)
+        ColdStorage_EventLog.postUpdate(entry)
+
+        logInfo("coldstorage.events", entry)
+    }
+end
+
+rule "ColdStorage Chamber 3 Event Journal"
+when
+    Item Chamber3_Event received update
+then
+    val message = Chamber3_Event.state.toString
+
+    if (message != "NULL" && message != "UNDEF" && message != "") {
+        val entry = "Камера 3: " + message
+
+        ColdStorage_LastEvent.postUpdate(entry)
+        ColdStorage_EventLog.postUpdate(entry)
+
+        logInfo("coldstorage.events", entry)
+    }
+end

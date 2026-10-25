@@ -1,0 +1,44 @@
+sitemap coldstorage label="ColdStorage IoT - Medical Warehouse"
+{
+    Frame label="Состояние склада" {
+        Text item=ColdStorage_SystemStatus label="Статус склада [%s]"
+        Text item=ColdStorage_LastEvent label="Последнее событие [%s]"
+        Text item=ColdStorage_EventLog label="Журнал: последнее сообщение [%s]"
+    }
+
+    Frame label="Камера 1" {
+        Text item=Chamber1_Temperature label="Температура [%.2f °C]"
+        Text item=Chamber1_Door label="Дверь [%s]"
+        Text item=Chamber1_Mains label="Электропитание [%s]"
+        Text item=Chamber1_Compressor label="Компрессор [%s]"
+        Text item=Chamber1_Alarm label="Сигнализация [%s]"
+        Text item=Chamber1_OutageSeconds label="Время отключения [%.0f с]"
+        Text item=Chamber1_Status label="Датчик [%s]"
+        Text item=Chamber1_Event label="Последнее MQTT-событие [%s]"
+        Chart item=Chamber1_Temperature period=h refresh=10000
+    }
+
+    Frame label="Камера 2" {
+        Text item=Chamber2_Temperature label="Температура [%.2f °C]"
+        Text item=Chamber2_Door label="Дверь [%s]"
+        Text item=Chamber2_Mains label="Электропитание [%s]"
+        Text item=Chamber2_Compressor label="Компрессор [%s]"
+        Text item=Chamber2_Alarm label="Сигнализация [%s]"
+        Text item=Chamber2_OutageSeconds label="Время отключения [%.0f с]"
+        Text item=Chamber2_Status label="Датчик [%s]"
+        Text item=Chamber2_Event label="Последнее MQTT-событие [%s]"
+        Chart item=Chamber2_Temperature period=h refresh=10000
+    }
+
+    Frame label="Камера 3" {
+        Text item=Chamber3_Temperature label="Температура [%.2f °C]"
+        Text item=Chamber3_Door label="Дверь [%s]"
+        Text item=Chamber3_Mains label="Электропитание [%s]"
+        Text item=Chamber3_Compressor label="Компрессор [%s]"
+        Text item=Chamber3_Alarm label="Сигнализация [%s]"
+        Text item=Chamber3_OutageSeconds label="Время отключения [%.0f с]"
+        Text item=Chamber3_Status label="Датчик [%s]"
+        Text item=Chamber3_Event label="Последнее MQTT-событие [%s]"
+        Chart item=Chamber3_Temperature period=h refresh=10000
+    }
+}
