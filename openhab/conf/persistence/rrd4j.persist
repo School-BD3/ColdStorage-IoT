@@ -1,0 +1,10 @@
+Strategies {
+    everyMinute : "0 * * * * ?"
+    default = everyMinute
+}
+
+Items {
+    Chamber1_Temperature,
+    Chamber2_Temperature,
+    Chamber3_Temperature : strategy = everyMinute, restoreOnStartup
+}
