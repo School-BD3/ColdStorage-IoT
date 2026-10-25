@@ -12,6 +12,57 @@ services:
     networks:
       - coldstorage
 
+  chamber1:
+    build: ./simulator
+    container_name: coldstorage-chamber1
+    restart: unless-stopped
+    environment:
+      CHAMBER_ID: "1"
+      MQTT_HOST: mqtt
+      MQTT_PORT: "8883"
+      MQTT_PASSWORD: ${CHAMBER1_PASSWORD:?Set CHAMBER1_PASSWORD in .env}
+      SIM_TIME_SCALE: "10"
+    volumes:
+      - ./mqtt/certs/ca.crt:/app/certs/ca.crt:ro
+    depends_on:
+      - mqtt
+    networks:
+      - coldstorage
+
+  chamber2:
+    build: ./simulator
+    container_name: coldstorage-chamber2
+    restart: unless-stopped
+    environment:
+      CHAMBER_ID: "2"
+      MQTT_HOST: mqtt
+      MQTT_PORT: "8883"
+      MQTT_PASSWORD: ${CHAMBER2_PASSWORD:?Set CHAMBER2_PASSWORD in .env}
+      SIM_TIME_SCALE: "1"
+    volumes:
+      - ./mqtt/certs/ca.crt:/app/certs/ca.crt:ro
+    depends_on:
+      - mqtt
+    networks:
+      - coldstorage
+
+  chamber3:
+    build: ./simulator
+    container_name: coldstorage-chamber3
+    restart: unless-stopped
+    environment:
+      CHAMBER_ID: "3"
+      MQTT_HOST: mqtt
+      MQTT_PORT: "8883"
+      MQTT_PASSWORD: ${CHAMBER3_PASSWORD:?Set CHAMBER3_PASSWORD in .env}
+      SIM_TIME_SCALE: "1"
+    volumes:
+      - ./mqtt/certs/ca.crt:/app/certs/ca.crt:ro
+    depends_on:
+      - mqtt
+    networks:
+      - coldstorage
+
 networks:
   coldstorage:
     driver: bridge

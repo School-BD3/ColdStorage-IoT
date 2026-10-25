@@ -11,3 +11,27 @@ topic read coldstorage/sensors/#
 topic read coldstorage/status/#
 topic read coldstorage/alerts/#
 topic write coldstorage/commands/#
+topic read coldstorage/+/temperature/telemetry
+topic read coldstorage/+/temperature/status
+topic read coldstorage/+/+/telemetry
+topic read coldstorage/+/+/state
+topic read coldstorage/+/temperature/status
+topic write coldstorage/+/+/set
+
+user chamber1
+topic write coldstorage/chamber1/+/telemetry
+topic write coldstorage/chamber1/+/state
+topic write coldstorage/chamber1/temperature/status
+topic read coldstorage/chamber1/+/set
+
+user chamber2
+topic write coldstorage/chamber2/+/telemetry
+topic write coldstorage/chamber2/+/state
+topic write coldstorage/chamber2/temperature/status
+topic read coldstorage/chamber2/+/set
+
+user chamber3
+topic write coldstorage/chamber3/+/telemetry
+topic write coldstorage/chamber3/+/state
+topic write coldstorage/chamber3/temperature/status
+topic read coldstorage/chamber3/+/set

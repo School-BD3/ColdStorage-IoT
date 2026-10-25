@@ -1,20 +1,23 @@
 __pycache__/
 *.pyc
 .pytest_cache/
-.env
 .venv/
 venv/
+
+.env
+.env.*
+!.env.example
 
 openhab/userdata/
 openhab/addons/
 
 mqtt/data/
 mqtt/log/
-mqtt/certs/*.key
-
-screenshots/.DS_Store
-
 mqtt/config/passwords
+
 mqtt/certs/*.key
 mqtt/certs/*.csr
 mqtt/certs/*.srl
+
+.DS_Store
+Thumbs.db
