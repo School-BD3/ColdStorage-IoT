@@ -1,0 +1,19 @@
+services:
+  mqtt:
+    image: eclipse-mosquitto:2
+    container_name: coldstorage-mqtt
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:1886:1883"
+    volumes:
+      - ./mqtt/config:/mosquitto/config:ro
+      - mqtt_data:/mosquitto/data
+    networks:
+      - coldstorage
+
+networks:
+  coldstorage:
+    driver: bridge
+
+volumes:
+  mqtt_data:
