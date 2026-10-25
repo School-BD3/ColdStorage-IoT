@@ -13,3 +13,8 @@ mqtt/log/
 mqtt/certs/*.key
 
 screenshots/.DS_Store
+
+mqtt/config/passwords
+mqtt/certs/*.key
+mqtt/certs/*.csr
+mqtt/certs/*.srl

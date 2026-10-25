@@ -1,0 +1,13 @@
+user sensor
+topic write coldstorage/sensors/#
+
+user controller
+topic read coldstorage/sensors/#
+topic write coldstorage/status/#
+topic write coldstorage/alerts/#
+
+user openhab
+topic read coldstorage/sensors/#
+topic read coldstorage/status/#
+topic read coldstorage/alerts/#
+topic write coldstorage/commands/#

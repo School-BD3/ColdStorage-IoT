@@ -4,9 +4,10 @@ services:
     container_name: coldstorage-mqtt
     restart: unless-stopped
     ports:
-      - "127.0.0.1:1886:1883"
+      - "127.0.0.1:8886:8883"
     volumes:
       - ./mqtt/config:/mosquitto/config:ro
+      - ./mqtt/certs:/mosquitto/certs:ro
       - mqtt_data:/mosquitto/data
     networks:
       - coldstorage
